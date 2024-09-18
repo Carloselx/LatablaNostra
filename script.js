@@ -40,4 +40,11 @@ function deleteReservation(index) {
     }
     
     // Volver a guardar las reservas actualizadas
-    local
+    localStorage.setItem('reservations', JSON.stringify(reservations));
+    
+    // Recargar la lista de reservas
+    loadReservations();
+}
+
+// Cargar las reservas al iniciar la página
+loadReservations();
