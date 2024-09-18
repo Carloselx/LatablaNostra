@@ -42,7 +42,7 @@ document.getElementById('timeSlot').addEventListener('change', function() {
 });
 
 // Inicializa EmailJS con tu usuario ID
-emailjs.init('latablanostra.info@gmail.com');
+emailjs.init('29kuLMmoK5AzTpj7r');
 
 document.getElementById('rentalForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío del formulario para demostración
