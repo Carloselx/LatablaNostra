@@ -73,7 +73,7 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
         document.getElementById('price').value = price ? `${price} euros` : "";
 
         // Enviar correo electrónico con EmailJS
-        emailjs.send('service_lqiluoz', 'template_v0i0n99', {
+        emailjs.send('service_lqiluoz', 'template_v0l0n99', {
             date: selectedDate,
             timeSlot: timeSlot,
             email: email,
