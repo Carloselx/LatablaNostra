@@ -9,7 +9,7 @@ body {
 
 /* Cabecera */
 header {
-    background-color: rgba(0, 0, 0, 0); /* Negro */
+    background-color: rgba(0, 0, 0, 0.9); /* Negro */
     color: white;
     padding: 20px;
     text-align: center;
