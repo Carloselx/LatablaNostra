@@ -1,0 +1,53 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+header {
+    background-color: #e76f51;
+    color: white;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.eslogan {
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+h2 {
+    color: #264653;
+}
+
+.gallery img, video {
+    margin-bottom: 15px;
+}
+
+footer {
+    background-color: #2a9d8f;
+    color: white;
+}
+
+footer a {
+    margin: 0 10px;
+}
+
+footer a img {
+    width: 30px;
+}
+
+.booking-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#price {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
