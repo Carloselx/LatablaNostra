@@ -12,7 +12,7 @@ header {
     background-color: rgba(0, 0, 0, 0.9); /* Negro */
     color: white;
     padding: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 header img {
