@@ -1,9 +1,6 @@
 // Cargar fechas no disponibles del LocalStorage, si existen
 const unavailableDates = JSON.parse(localStorage.getItem('unavailableDates')) || {};
 
-// Cargar reservas del LocalStorage, si existen
-const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
-
 // Función para calcular el precio según la fecha y la franja horaria
 function calculatePrice(selectedDate, timeSlot) {
     const date = new Date(selectedDate);
@@ -25,28 +22,31 @@ function calculatePrice(selectedDate, timeSlot) {
 function updateTimeSlots() {
     const selectedDate = document.getElementById('date').value;
     const timeSlotsContainer = document.getElementById('timeSlotsContainer');
-
+    
     if (!selectedDate) {
         timeSlotsContainer.innerHTML = ''; // Limpiar el contenedor si no hay fecha seleccionada
         document.getElementById('price').value = ''; // Limpiar el precio
         return;
     }
-
+    
     const timeSlots = ['mañana', 'tarde', 'todo'];
-    let html = '<label>Selecciona la franja horaria:</label>';
-
+    let html = 'Selecciona la franja horaria:';
+    
     timeSlots.forEach(slot => {
         const isUnavailable = unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(slot);
+        const checked = isUnavailable ? 'disabled' : '';
+        const textDecoration = isUnavailable ? 'text-decoration: line-through;' : '';
+        
         html += `
             <div class="form-check">
-                <input class="form-check-input ${isUnavailable ? 'disabled' : ''}" type="radio" name="timeSlot" id="${slot}" value="${slot}" ${isUnavailable ? 'disabled' : ''}>
-                <label class="form-check-label ${isUnavailable ? 'disabled' : ''}" for="${slot}">
+                <input type="radio" class="form-check-input" name="timeSlot" value="${slot}" id="${slot}" ${checked}>
+                <label class="form-check-label" for="${slot}" style="${textDecoration}">
                     ${slot.charAt(0).toUpperCase() + slot.slice(1)}
                 </label>
             </div>
         `;
     });
-
+    
     timeSlotsContainer.innerHTML = html;
 }
 
@@ -54,9 +54,9 @@ function updateTimeSlots() {
 function onDateChange() {
     const selectedDate = document.getElementById('date').value;
     const timeSlot = document.querySelector('input[name="timeSlot"]:checked')?.value;
-
+    
     updateTimeSlots(); // Actualiza las franjas horarias disponibles
-
+    
     if (selectedDate && timeSlot) {
         // Verificar si la franja horaria está disponible para la fecha seleccionada
         if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
@@ -93,11 +93,6 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
     const price = document.getElementById('price').value;
-
-    if (!selectedDate || !timeSlot) {
-        alert('Por favor, selecciona una fecha y una franja horaria.');
-        return;
-    }
 
     // Verifica si la franja horaria está ya reservada para la fecha seleccionada
     if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
