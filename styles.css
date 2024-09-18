@@ -1,11 +1,12 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
+    background-color: #f5f5f5;
     color: #333;
 }
 
+/* Cabecera */
 header {
-    background-color: #e76f51;
+    background-color: #f4a261; /* Color vibrante para la cabecera */
     color: white;
 }
 
@@ -19,17 +20,22 @@ header h1 {
     font-style: italic;
 }
 
+/* Estilo para la galería y los videos */
 h2 {
     color: #264653;
 }
 
 .gallery img, video {
     margin-bottom: 15px;
+    border: 2px solid #e76f51;
+    border-radius: 10px;
 }
 
+/* Pie de página */
 footer {
     background-color: #2a9d8f;
     color: white;
+    padding: 20px 0;
 }
 
 footer a {
@@ -40,14 +46,26 @@ footer a img {
     width: 30px;
 }
 
+/* Estilo del formulario de reserva */
 .booking-form {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e76f51;
 }
 
 #price {
     font-weight: bold;
     background-color: #f0f0f0;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #2a9d8f;
+    border-color: #2a9d8f;
+}
+
+.btn-primary:hover {
+    background-color: #21867a;
 }
