@@ -1,7 +1,7 @@
 /* Estilo general */
 body {
     font-family: 'Poppins', sans-serif; /* Tipografía moderna */
-    background-image: url('https://via.placeholder.com/1920x1080'); /* Imagen de fondo */
+    background-image: url('images/ejemplo.jpeg'); /* Imagen de fondo */
     background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
     background-attachment: fixed; /* Fija la imagen al fondo */
     color: #333;
