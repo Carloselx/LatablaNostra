@@ -18,7 +18,8 @@ header {
 header img {
     width: 200px; /* Cambia el tamaño del logo aquí */
     height: auto; /* Mantiene la proporción de la imagen */
-    margin-right: 0;
+    margin-right: 0; /* Elimina cualquier margen alrededor de la imagen */
+    border: none; /* Elimina cualquier borde alrededor de la imagen */
 }
 
 header h1 {
