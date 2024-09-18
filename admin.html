@@ -1,3 +1,4 @@
+<!-- admin.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,7 +24,7 @@
                     <th>Correo Electrónico</th>
                     <th>Teléfono</th>
                     <th>Precio</th>
-                    <th>Acciones</th> <!-- Nueva columna para acciones -->
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="reservationsTableBody">
@@ -35,6 +36,7 @@
     <script>
         // Cargar reservas del LocalStorage, si existen
         const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+        const unavailableDates = JSON.parse(localStorage.getItem('unavailableDates')) || {};
 
         // Función para mostrar reservas en la tabla
         function displayReservations() {
@@ -48,7 +50,7 @@
                     <td>${reservation.email}</td>
                     <td>${reservation.phone}</td>
                     <td>${reservation.price}</td>
-                    <td><button class="btn btn-danger" onclick="cancelReservation(${index})">Anular</button></td> <!-- Botón de anulación -->
+                    <td><button class="btn btn-danger" onclick="cancelReservation(${index})">Anular</button></td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -56,10 +58,26 @@
 
         // Función para anular una reserva
         function cancelReservation(index) {
+            const reservation = reservations[index];
+            
             // Eliminar la reserva del array
             reservations.splice(index, 1);
+
+            // Eliminar la franja horaria de las fechas no disponibles
+            if (unavailableDates[reservation.date]) {
+                const slotIndex = unavailableDates[reservation.date].indexOf(reservation.timeSlot);
+                if (slotIndex > -1) {
+                    unavailableDates[reservation.date].splice(slotIndex, 1);
+                    if (unavailableDates[reservation.date].length === 0) {
+                        delete unavailableDates[reservation.date];
+                    }
+                }
+            }
+
             // Actualizar el LocalStorage
             localStorage.setItem('reservations', JSON.stringify(reservations));
+            localStorage.setItem('unavailableDates', JSON.stringify(unavailableDates));
+
             // Volver a mostrar las reservas actualizadas
             displayReservations();
         }
