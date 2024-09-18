@@ -23,6 +23,7 @@
                     <th>Correo Electrónico</th>
                     <th>Teléfono</th>
                     <th>Precio</th>
+                    <th>Acciones</th> <!-- Nueva columna para acciones -->
                 </tr>
             </thead>
             <tbody id="reservationsTableBody">
@@ -39,7 +40,7 @@
         function displayReservations() {
             const tableBody = document.getElementById('reservationsTableBody');
             tableBody.innerHTML = ''; // Limpiar tabla antes de llenarla
-            reservations.forEach(reservation => {
+            reservations.forEach((reservation, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${reservation.date}</td>
@@ -47,9 +48,20 @@
                     <td>${reservation.email}</td>
                     <td>${reservation.phone}</td>
                     <td>${reservation.price}</td>
+                    <td><button class="btn btn-danger" onclick="cancelReservation(${index})">Anular</button></td> <!-- Botón de anulación -->
                 `;
                 tableBody.appendChild(row);
             });
+        }
+
+        // Función para anular una reserva
+        function cancelReservation(index) {
+            // Eliminar la reserva del array
+            reservations.splice(index, 1);
+            // Actualizar el LocalStorage
+            localStorage.setItem('reservations', JSON.stringify(reservations));
+            // Volver a mostrar las reservas actualizadas
+            displayReservations();
         }
 
         // Mostrar las reservas al cargar la página
