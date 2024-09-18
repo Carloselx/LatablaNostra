@@ -9,7 +9,7 @@ body {
 
 /* Cabecera */
 header {
-    background-color: rgba(244, 162, 97, 0.9); /* Naranja vibrante con transparencia */
+    background-color: rgba(0, 0, 0, 0.9); /* Negro con transparencia */
     color: white;
     padding: 20px;
     text-align: center;
