@@ -7,33 +7,41 @@ body {
     color: #333;
 }
 
-/* Cabecera */
+/* Estilos generales para la cabecera */
 header {
-    background-color: rgba(0, 0, 0, 0.9); /* Negro */
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    align-items: center; /* Centra horizontalmente los elementos */
+    justify-content: center; /* Centra verticalmente los elementos */
+    background-color: rgba(0, 0, 0, 0.9); /* Negro con transparencia */
     color: white;
     padding: 20px;
-    text-align: left;
+    text-align: center; /* Centra el texto */
 }
 
+/* Estilos para el logo */
 header img {
     width: 200px; /* Cambia el tamaño del logo aquí */
     height: auto; /* Mantiene la proporción de la imagen */
-    margin-right: 0; /* Elimina cualquier margen alrededor de la imagen */
+    margin-bottom: 10px; /* Espacio debajo del logo para separar del título */
     border: none; /* Elimina cualquier borde alrededor de la imagen */
 }
 
+/* Estilos para el título */
 header h1 {
-    font-size: 2rem;
+    font-size: 2rem; /* Tamaño del título */
     font-weight: 600;
     margin: 0; /* Elimina el margen por defecto */
 }
 
+/* Estilos para el eslogan */
 .eslogan {
-    font-size: 1.5rem;
-    font-style: italic;
-    margin-top: 10px; /* Espacio encima del eslogan */
+    font-size: 1.5rem; /* Tamaño del eslogan */
+    font-style: italic; /* Estilo en cursiva */
+    margin-top: 10px; /* Espacio encima del eslogan para separación del título */
     margin-bottom: 0; /* Elimina el margen inferior por defecto */
 }
+
 
 /* Descripción e imágenes */
 section.container {
