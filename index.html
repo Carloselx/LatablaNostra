@@ -16,6 +16,21 @@
             right: 20px; /* Ajusta según lo necesites */
             font-size: 16px;
             font-weight: bold;
+            text-decoration: none;
+            color: #007bff; /* Color de enlace */
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        .time-slot {
+            margin-bottom: 5px;
+        }
+
+        .time-slot.disabled {
+            text-decoration: line-through;
+            color: #6c757d; /* Color de texto desactivado */
         }
     </style>
 </head>
@@ -63,13 +78,8 @@
                 <label for="date">Selecciona una fecha:</label>
                 <input type="date" class="form-control" id="date" required>
             </div>
-            <div class="form-group">
-                <label for="timeSlot">Selecciona la franja horaria:</label>
-                <select class="form-control" id="timeSlot" required>
-                    <option value="mañana">Mañana</option>
-                    <option value="tarde">Tarde</option>
-                    <option value="todo">Todo el día</option>
-                </select>
+            <div class="form-group" id="timeSlotsContainer">
+                <!-- Las franjas horarias se llenarán aquí mediante JavaScript -->
             </div>
             <div class="form-group">
                 <label for="price">Precio:</label>
@@ -101,8 +111,44 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
-       emailjs.init('YbHlCwf9oibKf6KTF');  // Reemplaza 'YOUR_PUBLIC_KEY' con tu clave pública real
+        emailjs.init('YbHlCwf9oibKf6KTF');  // Reemplaza 'YOUR_PUBLIC_KEY' con tu clave pública real
+
+        // Cargar fechas no disponibles del LocalStorage, si existen
+        const unavailableDates = JSON.parse(localStorage.getItem('unavailableDates')) || {};
+
+        // Función para mostrar las franjas horarias debajo del calendario
+        function updateTimeSlots() {
+            const selectedDate = document.getElementById('date').value;
+            const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+
+            if (!selectedDate) {
+                timeSlotsContainer.innerHTML = ''; // Limpiar el contenedor si no hay fecha seleccionada
+                return;
+            }
+
+            const timeSlots = ['mañana', 'tarde', 'todo'];
+            let html = '<label for="timeSlot">Selecciona la franja horaria:</label>';
+
+            timeSlots.forEach(slot => {
+                const isUnavailable = unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(slot);
+                html += `
+                    <div class="form-check time-slot ${isUnavailable ? 'disabled' : ''}">
+                        <input class="form-check-input" type="radio" name="timeSlot" id="${slot}" value="${slot}" ${isUnavailable ? 'disabled' : ''}>
+                        <label class="form-check-label" for="${slot}">
+                            ${slot.charAt(0).toUpperCase() + slot.slice(1)}
+                        </label>
+                    </div>
+                `;
+            });
+
+            timeSlotsContainer.innerHTML = html;
+        }
+
+        // Actualiza el contenedor de franjas horarias cuando cambia la fecha
+        document.getElementById('date').addEventListener('change', updateTimeSlots);
+
+        // Inicializa las franjas horarias cuando se carga la página por primera vez
+        document.addEventListener('DOMContentLoaded', updateTimeSlots);
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
