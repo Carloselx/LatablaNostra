@@ -47,6 +47,13 @@ document.getElementById('timeSlot').addEventListener('change', function() {
     onDateChange();
 });
 
+// Inicializar EmailJS
+if (typeof emailjs !== 'undefined') {
+    emailjs.init('29kuLMmoK5AzTpj7r');
+} else {
+    alert('Error: No se pudo inicializar el servicio de EmailJS.');
+}
+
 // Validación básica del formulario y envío de datos
 document.getElementById('rentalForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío del formulario para demostración
@@ -55,7 +62,9 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     const timeSlot = document.getElementById('timeSlot').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
+    const price = document.getElementById('price').value;
 
+    // Verificar si la fecha es no disponible
     const isHoliday = unavailableDates.includes(selectedDate);
     if (isHoliday) {
         alert('La fecha seleccionada ya está marcada como no disponible.');
@@ -66,15 +75,8 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     unavailableDates.push(selectedDate);
     localStorage.setItem('unavailableDates', JSON.stringify(unavailableDates));
 
-    // Determinar el precio
-    const price = calculatePrice(selectedDate, timeSlot);
-    document.getElementById('price').value = price ? `${price} euros` : "";
-
-    // Inicializa EmailJS si no se ha hecho ya
+    // Enviar correo electrónico con EmailJS
     if (typeof emailjs !== 'undefined') {
-        emailjs.init('29kuLMmoK5AzTpj7r');
-
-        // Enviar correo electrónico con EmailJS
         emailjs.send('service_lqiluoz', 'template_v0l0n99', {
             date: selectedDate,
             timeSlot: timeSlot,
@@ -88,6 +90,6 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
             alert('Error al enviar el correo electrónico. Inténtalo de nuevo.');
         });
     } else {
-        alert('Error: No se pudo inicializar el servicio de EmailJS.');
+        alert('Error: No se pudo enviar el correo. Verifica la configuración de EmailJS.');
     }
 });
