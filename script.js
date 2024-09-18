@@ -5,6 +5,9 @@ const unavailableDates = JSON.parse(localStorage.getItem('unavailableDates')) ||
     // Añadir más fechas según sea necesario
 ];
 
+// Cargar reservas del LocalStorage, si existen
+const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+
 // Función para calcular el precio según la fecha y la franja horaria
 function calculatePrice(selectedDate, timeSlot) {
     const date = new Date(selectedDate);
@@ -69,6 +72,17 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     // Añadir la fecha a las fechas no disponibles y guardarla en LocalStorage
     unavailableDates.push(selectedDate);
     localStorage.setItem('unavailableDates', JSON.stringify(unavailableDates));
+
+    // Guardar la reserva en LocalStorage
+    const reservation = {
+        date: selectedDate,
+        timeSlot: timeSlot,
+        email: email,
+        phone: phone,
+        price: price ? `${price} euros` : "No disponible",
+    };
+    reservations.push(reservation);
+    localStorage.setItem('reservations', JSON.stringify(reservations));
 
     // Enviar correo electrónico con EmailJS
     emailjs.send('service_lqiluoz', 'template_v0l0n99', {
