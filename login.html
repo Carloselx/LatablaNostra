@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center">Iniciar Sesión</h1>
+        <form id="loginForm" class="text-center">
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        </form>
+    </div>
+
+    <script>
+    // Contraseña de administración (para demostración)
+    const adminPassword = 'admin123';
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const password = document.getElementById('password').value;
+
+        if (password === adminPassword) {
+            window.location.href = 'admin.html'; // Redirigir a la página de administración
+        } else {
+            alert('Contraseña incorrecta.');
+        }
+    });
+    </script>
+</body>
+</html>
