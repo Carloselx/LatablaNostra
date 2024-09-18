@@ -7,24 +7,30 @@ const unavailableDates = [
 
 // Script para actualizar el precio automáticamente según la fecha seleccionada
 document.getElementById('date').addEventListener('change', function() {
-    const date = new Date(this.value);
+    const selectedDate = this.value;
+    const date = new Date(selectedDate);
     const day = date.getDay();
-    const isHoliday = false; // Puedes agregar una lógica para días festivos si es necesario.
+    const isHoliday = unavailableDates.includes(selectedDate);
     let price;
 
-    if (day >= 1 && day <= 4) {
-        price = 80; // Lunes a jueves
-    } else if (day === 5) {
-        price = 90; // Viernes
-    } else if (day === 0 || day === 6 || isHoliday) {
-        price = 110; // Sábados, domingos y festivos
+    if (isHoliday) {
+        alert("La fecha seleccionada no está disponible.");
+        document.getElementById('price').value = "";
+        return;
     }
 
-    document.getElementById('price').value = price + " euros";
+    if (day >= 1 && day <= 4) { // Lunes a jueves
+        price = document.getElementById('timeSlot').value === 'todo' ? 140 : 80;
+    } else if (day === 5) { // Viernes
+        price = document.getElementById('timeSlot').value === 'todo' ? 140 : 90;
+    } else if (day === 0 || day === 6) { // Sábados y domingos
+        price = document.getElementById('timeSlot').value === 'todo' ? 180 : 110;
+    }
+
+    document.getElementById('price').value = price ? `${price} euros` : "";
 });
 
-// Validación básica del formulario
-document.getElementById('rentalForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert("¡Tu reserva ha sido enviada!");
+// Actualiza el precio cuando cambia la franja horaria
+document.getElementById('timeSlot').addEventListener('change', function() {
+    document.getElementById('date').dispatchEvent(new Event('change'));
 });
