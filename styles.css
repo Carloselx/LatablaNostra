@@ -25,13 +25,13 @@ header img {
 header h1 {
     font-size: 2rem;
     font-weight: 600;
-    margin-top: 10px; /* Espacio encima del eslogan */
-    margin-bottom: 0; /* Elimina el margen inferior por defecto */
 }
 
 .eslogan {
     font-size: 1.5rem;
     font-style: italic;
+    margin-top: 10px; /* Espacio encima del eslogan */
+    margin-bottom: 0; /* Elimina el margen inferior por defecto */
 }
 
 /* Descripción e imágenes */
