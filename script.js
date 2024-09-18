@@ -21,24 +21,6 @@ function calculatePrice(selectedDate, timeSlot) {
     return price;
 }
 
-// Función para manejar el cambio de fecha
-function onDateChange() {
-    const selectedDate = document.getElementById('date').value;
-    const timeSlot = document.querySelector('input[name="timeSlot"]:checked')?.value;
-
-    // Verificar si la franja horaria está disponible para la fecha seleccionada
-    if (selectedDate && timeSlot) {
-        if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
-            alert("La franja horaria seleccionada no está disponible.");
-            document.getElementById('price').value = "";
-            return;
-        }
-
-        const price = calculatePrice(selectedDate, timeSlot);
-        document.getElementById('price').value = price ? `${price} euros` : "";
-    }
-}
-
 // Función para actualizar las franjas horarias disponibles
 function updateTimeSlots() {
     const selectedDate = document.getElementById('date').value;
@@ -57,7 +39,7 @@ function updateTimeSlots() {
         html += `
             <div class="form-check time-slot ${isUnavailable ? 'disabled' : ''}">
                 <input class="form-check-input" type="radio" name="timeSlot" id="${slot}" value="${slot}" ${isUnavailable ? 'disabled' : ''}>
-                <label class="form-check-label" for="${slot}">
+                <label class="form-check-label ${isUnavailable ? 'disabled' : ''}" for="${slot}">
                     ${slot.charAt(0).toUpperCase() + slot.slice(1)}
                 </label>
             </div>
@@ -65,6 +47,24 @@ function updateTimeSlots() {
     });
 
     timeSlotsContainer.innerHTML = html;
+}
+
+// Función para manejar el cambio de fecha
+function onDateChange() {
+    const selectedDate = document.getElementById('date').value;
+    const timeSlot = document.querySelector('input[name="timeSlot"]:checked')?.value;
+
+    // Verificar si la franja horaria está disponible para la fecha seleccionada
+    if (selectedDate && timeSlot) {
+        if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
+            alert("La franja horaria seleccionada no está disponible.");
+            document.getElementById('price').value = "";
+            return;
+        }
+
+        const price = calculatePrice(selectedDate, timeSlot);
+        document.getElementById('price').value = price ? `${price} euros` : "";
+    }
 }
 
 // Actualiza el contenedor de franjas horarias cuando cambia la fecha
