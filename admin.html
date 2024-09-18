@@ -4,24 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin - La Tabla Nostra</title>
+    <title>Administrador de Reservas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Cabecera con logo -->
     <header class="d-flex align-items-center justify-content-center py-5">
-        <img src="images/Logoweb.jpg" alt="Logo La Tabla Nostra" class="logo">
-        <div class="text-center">
-            <h1 class="mb-0">La Tabla Nostra - Admin</h1>
-        </div>
+        <h1>Administra las Reservas</h1>
     </header>
 
-    <!-- Sección para mostrar las reservas -->
     <section class="container my-5">
-        <h2 class="text-center">Listado de Reservas</h2>
-        <table class="table table-bordered">
+        <h2>Lista de Reservas</h2>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Fecha</th>
@@ -31,19 +25,20 @@
                     <th>Precio</th>
                 </tr>
             </thead>
-            <tbody id="reservationsTable">
-                <!-- Las reservas se añadirán aquí con JavaScript -->
+            <tbody id="reservationsTableBody">
+                <!-- Reservas se llenarán aquí -->
             </tbody>
         </table>
     </section>
 
-    <!-- Scripts -->
     <script>
-        // Cargar las reservas del LocalStorage y mostrarlas en la tabla
-        document.addEventListener('DOMContentLoaded', function() {
-            const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
-            const tableBody = document.getElementById('reservationsTable');
-            
+        // Cargar reservas del LocalStorage, si existen
+        const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+
+        // Función para mostrar reservas en la tabla
+        function displayReservations() {
+            const tableBody = document.getElementById('reservationsTableBody');
+            tableBody.innerHTML = ''; // Limpiar tabla antes de llenarla
             reservations.forEach(reservation => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -55,7 +50,10 @@
                 `;
                 tableBody.appendChild(row);
             });
-        });
+        }
+
+        // Mostrar las reservas al cargar la página
+        document.addEventListener('DOMContentLoaded', displayReservations);
     </script>
 </body>
 </html>
