@@ -49,7 +49,7 @@ document.getElementById('timeSlot').addEventListener('change', function() {
 
 // Inicializar EmailJS
 if (typeof emailjs !== 'undefined') {
-    emailjs.init('YbHlCwf9oibKf6KTF');  // Asegúrate de que el ID del usuario es correcto
+    emailjs.init('Vp7Hhd_pe5hVeiTszlKxO');  // Asegúrate de que el ID del usuario es correcto
 } else {
     alert('Error: No se pudo inicializar el servicio de EmailJS.');
 }
