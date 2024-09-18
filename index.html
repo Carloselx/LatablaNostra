@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>La Tabla Nostra - Alquiler de Local</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Cabecera -->
+    <header class="text-center py-5">
+        <h1>La Tabla Nostra</h1>
+        <p class="eslogan">Un espacio para celebrar y disfrutar en familia</p>
+    </header>
+
+    <!-- Descripción del local -->
+    <section class="container text-center my-5">
+        <h2>Descripción del Local</h2>
+        <p>La Tabla Nostra es el espacio perfecto para celebrar todo tipo de eventos familiares, fiestas y reuniones. Ofrecemos un ambiente acogedor, adaptable tanto para adultos como para niños. ¡Disfruta de un día inolvidable con nosotros!</p>
+    </section>
+
+    <!-- Galería de imágenes y videos -->
+    <section class="container gallery my-5">
+        <h2 class="text-center">Galería</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/300" class="img-fluid" alt="Ejemplo Local 1">
+            </div>
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/300" class="img-fluid" alt="Ejemplo Local 2">
+            </div>
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/300" class="img-fluid" alt="Ejemplo Local 3">
+            </div>
+        </div>
+        <div class="text-center my-4">
+            <video width="400" controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Tu navegador no soporta el video.
+            </video>
+        </div>
+    </section>
+
+    <!-- Formulario de alquiler -->
+    <section class="container booking-form my-5">
+        <h2 class="text-center">Reserva tu Evento</h2>
+        <form id="rentalForm">
+            <div class="form-group">
+                <label for="date">Selecciona una fecha:</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="timeSlot">Selecciona la franja horaria:</label>
+                <select class="form-control" id="timeSlot" required>
+                    <option value="mañana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                    <option value="todo">Todo el día</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="price">Precio:</label>
+                <input type="text" class="form-control" id="price" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary">Reservar</button>
+        </form>
+    </section>
+
+    <!-- Redes sociales -->
+    <footer class="text-center py-4">
+        <p>Síguenos en nuestras redes sociales</p>
+        <a href="#"><img src="https://via.placeholder.com/30" alt="Facebook"></a>
+        <a href="#"><img src="https://via.placeholder.com/30" alt="Instagram"></a>
+        <a href="#"><img src="https://via.placeholder.com/30" alt="Twitter"></a>
+        <p>&copy; 2024 La Tabla Nostra</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
