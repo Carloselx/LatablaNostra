@@ -26,6 +26,7 @@ function onDateChange() {
     const selectedDate = document.getElementById('date').value;
     const timeSlot = document.getElementById('timeSlot').value;
 
+    // Verificar si la franja horaria está disponible para la fecha seleccionada
     if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
         alert("La franja horaria seleccionada no está disponible.");
         document.getElementById('price').value = "";
@@ -57,9 +58,9 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     const phone = document.getElementById('phone').value;
     const price = document.getElementById('price').value;
 
-    // Verifica si la fecha y franja horaria están disponibles
+    // Verifica si la franja horaria está ya reservada para la fecha seleccionada
     if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
-        alert('La franja horaria seleccionada ya está marcada como no disponible.');
+        alert('La franja horaria seleccionada ya está reservada.');
         return;
     }
 
@@ -67,7 +68,9 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     if (!unavailableDates[selectedDate]) {
         unavailableDates[selectedDate] = [];
     }
-    unavailableDates[selectedDate].push(timeSlot);
+    if (!unavailableDates[selectedDate].includes(timeSlot)) {
+        unavailableDates[selectedDate].push(timeSlot);
+    }
     localStorage.setItem('unavailableDates', JSON.stringify(unavailableDates));
 
     // Guardar la reserva en LocalStorage
