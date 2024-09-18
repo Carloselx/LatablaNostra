@@ -82,4 +82,5 @@ footer a {
 
 footer a img {
     width: 30px;
+    border: none; /* Elimina cualquier borde alrededor de la imagen */
 }
