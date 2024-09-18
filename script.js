@@ -48,7 +48,7 @@ document.getElementById('timeSlot').addEventListener('change', function() {
 });
 
 // Inicializar EmailJS con el ID del usuario
-emailjs.init('29kuLMmoK5AzTpj7r');  // Reemplaza con tu propio ID de usuario
+emailjs.init('29kuLMmoK5AzTpj7r'); // Reemplaza con tu propio ID de usuario
 
 // Manejo del envío del formulario
 document.getElementById('rentalForm').addEventListener('submit', function(event) {
@@ -59,6 +59,16 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
     const price = document.getElementById('price').value;
+
+    // Verifica si la fecha está disponible
+    if (unavailableDates.includes(selectedDate)) {
+        alert('La fecha seleccionada ya está marcada como no disponible.');
+        return;
+    }
+
+    // Añadir la fecha a las fechas no disponibles y guardarla en LocalStorage
+    unavailableDates.push(selectedDate);
+    localStorage.setItem('unavailableDates', JSON.stringify(unavailableDates));
 
     // Enviar correo electrónico con EmailJS
     emailjs.send('service_lqiluoz', 'template_v0l0n99', {
@@ -72,14 +82,9 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
         console.log('Éxito:', response);
         alert('Reserva confirmada. Se ha enviado un correo electrónico de confirmación.');
     }, function(error) {
-        console.error('Error:', error);
+        console.error('Error:', error); // Imprime el error en la consola para detalles más específicos
         alert('Error al enviar el correo electrónico. Inténtalo de nuevo.');
     });
-});
-
-    // Añadir la fecha a las fechas no disponibles y guardarla en LocalStorage
-    unavailableDates.push(selectedDate);
-    localStorage.setItem('unavailableDates', JSON.stringify(unavailableDates));
 
     // Imprimir los datos en la consola
     console.log({
@@ -89,24 +94,4 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
         phone: phone,
         price: price
     });
-
-    // Enviar correo electrónico a ti mismo con EmailJS
-    if (typeof emailjs !== 'undefined') {
-        emailjs.send('service_lqiluoz', 'template_v0l0n99', {
-            date: selectedDate,
-            timeSlot: timeSlot,
-            email: email,
-            phone: phone,
-            price: price ? `${price} euros` : "No disponible",
-        })
-        .then(function(response) {
-            alert('Reserva confirmada. Se ha enviado un correo electrónico de confirmación.');
-        }, function(error) {
-            console.error('Error:', error);  // Imprime el error en la consola para detalles más específicos
-            alert('Error al enviar el correo electrónico. Inténtalo de nuevo.');
-        });
-    } else {
-        alert('Error: No se pudo enviar el correo. Verifica la configuración de EmailJS.');
-    }
 });
-
