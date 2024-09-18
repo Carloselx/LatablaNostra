@@ -48,7 +48,7 @@ document.getElementById('timeSlot').addEventListener('change', function() {
 });
 
 // Inicializar EmailJS con el ID del usuario
-emailjs.init('Vp7Hhd_pe5hVeiTszlKxO'); // Reemplaza con tu propio ID de usuario
+emailjs.init('YbHlCwf9oibKf6KTF'); // Reemplaza con tu public key
 
 // Manejo del envío del formulario
 document.getElementById('rentalForm').addEventListener('submit', function(event) {
