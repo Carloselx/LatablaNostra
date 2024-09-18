@@ -47,16 +47,12 @@ document.getElementById('timeSlot').addEventListener('change', function() {
     onDateChange();
 });
 
-// Inicializar EmailJS
-if (typeof emailjs !== 'undefined') {
-    emailjs.init('Vp7Hhd_pe5hVeiTszlKxO');  // Asegúrate de que el ID del usuario es correcto
-} else {
-    alert('Error: No se pudo inicializar el servicio de EmailJS.');
-}
+// Inicializar EmailJS con el ID del usuario
+emailjs.init('29kuLMmoK5AzTpj7r');  // Reemplaza con tu propio ID de usuario
 
-// Validación básica del formulario y envío de datos
+// Manejo del envío del formulario
 document.getElementById('rentalForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevenir el envío del formulario para demostración
+    event.preventDefault(); // Prevenir el envío del formulario
 
     const selectedDate = document.getElementById('date').value;
     const timeSlot = document.getElementById('timeSlot').value;
@@ -64,12 +60,22 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     const phone = document.getElementById('phone').value;
     const price = document.getElementById('price').value;
 
-    // Verificar si la fecha es no disponible
-    const isHoliday = unavailableDates.includes(selectedDate);
-    if (isHoliday) {
-        alert('La fecha seleccionada ya está marcada como no disponible.');
-        return;
-    }
+    // Enviar correo electrónico con EmailJS
+    emailjs.send('service_lqiluoz', 'template_v0l0n99', {
+        date: selectedDate,
+        timeSlot: timeSlot,
+        email: email,
+        phone: phone,
+        price: price ? `${price} euros` : "No disponible",
+    })
+    .then(function(response) {
+        console.log('Éxito:', response);
+        alert('Reserva confirmada. Se ha enviado un correo electrónico de confirmación.');
+    }, function(error) {
+        console.error('Error:', error);
+        alert('Error al enviar el correo electrónico. Inténtalo de nuevo.');
+    });
+});
 
     // Añadir la fecha a las fechas no disponibles y guardarla en LocalStorage
     unavailableDates.push(selectedDate);
