@@ -30,6 +30,12 @@ document.getElementById('date').addEventListener('change', function() {
     document.getElementById('price').value = price ? `${price} euros` : "";
 });
 
+// Validación básica del formulario
+document.getElementById('rentalForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("¡Tu reserva ha sido enviada!");
+});
+
 // Actualiza el precio cuando cambia la franja horaria
 document.getElementById('timeSlot').addEventListener('change', function() {
     document.getElementById('date').dispatchEvent(new Event('change'));
