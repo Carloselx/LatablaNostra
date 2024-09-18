@@ -37,8 +37,8 @@ function updateTimeSlots() {
     timeSlots.forEach(slot => {
         const isUnavailable = unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(slot);
         html += `
-            <div class="form-check time-slot ${isUnavailable ? 'disabled' : ''}">
-                <input class="form-check-input" type="radio" name="timeSlot" id="${slot}" value="${slot}" ${isUnavailable ? 'disabled' : ''}>
+            <div class="form-check">
+                <input class="form-check-input ${isUnavailable ? 'disabled' : ''}" type="radio" name="timeSlot" id="${slot}" value="${slot}" ${isUnavailable ? 'disabled' : ''}>
                 <label class="form-check-label ${isUnavailable ? 'disabled' : ''}" for="${slot}">
                     ${slot.charAt(0).toUpperCase() + slot.slice(1)}
                 </label>
@@ -54,8 +54,10 @@ function onDateChange() {
     const selectedDate = document.getElementById('date').value;
     const timeSlot = document.querySelector('input[name="timeSlot"]:checked')?.value;
 
-    // Verificar si la franja horaria está disponible para la fecha seleccionada
+    updateTimeSlots(); // Actualiza las franjas horarias disponibles
+
     if (selectedDate && timeSlot) {
+        // Verificar si la franja horaria está disponible para la fecha seleccionada
         if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
             alert("La franja horaria seleccionada no está disponible.");
             document.getElementById('price').value = "";
