@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Reservas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center">Reservas del Local</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Franja Horaria</th>
+                    <th>Correo Electrónico</th>
+                    <th>Teléfono</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody id="reservations-table-body">
+                <!-- Aquí se llenarán las reservas -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+    // Función para mostrar las reservas
+    function displayReservations() {
+        // Recuperar las reservas del LocalStorage
+        const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+
+        // Obtener el contenedor de la tabla
+        const tableBody = document.getElementById('reservations-table-body');
+
+        // Limpiar el contenido existente
+        tableBody.innerHTML = '';
+
+        // Recorrer las reservas y añadir filas a la tabla
+        reservations.forEach(reservation => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${reservation.date}</td>
+                <td>${reservation.timeSlot}</td>
+                <td>${reservation.email}</td>
+                <td>${reservation.phone}</td>
+                <td>${reservation.price}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Llamar a la función para mostrar las reservas al cargar la página
+    document.addEventListener('DOMContentLoaded', displayReservations);
+    </script>
+</body>
+</html>
