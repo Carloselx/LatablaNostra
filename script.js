@@ -33,7 +33,7 @@ document.getElementById('date').addEventListener('change', function() {
 // Validación básica del formulario
 document.getElementById('rentalForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert("¡Tu reserva ha sido enviada!");
+    alert("¡Gracias por tu reserva! Nos pondremos en contacto contigo para confirmar todo");
 });
 
 // Actualiza el precio cuando cambia la franja horaria
