@@ -24,28 +24,61 @@ function calculatePrice(selectedDate, timeSlot) {
 // Función para manejar el cambio de fecha
 function onDateChange() {
     const selectedDate = document.getElementById('date').value;
-    const timeSlot = document.getElementById('timeSlot').value;
+    const timeSlot = document.querySelector('input[name="timeSlot"]:checked')?.value;
 
     // Verificar si la franja horaria está disponible para la fecha seleccionada
-    if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
-        alert("La franja horaria seleccionada no está disponible.");
-        document.getElementById('price').value = "";
+    if (selectedDate && timeSlot) {
+        if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
+            alert("La franja horaria seleccionada no está disponible.");
+            document.getElementById('price').value = "";
+            return;
+        }
+
+        const price = calculatePrice(selectedDate, timeSlot);
+        document.getElementById('price').value = price ? `${price} euros` : "";
+    }
+}
+
+// Función para actualizar las franjas horarias disponibles
+function updateTimeSlots() {
+    const selectedDate = document.getElementById('date').value;
+    const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+
+    if (!selectedDate) {
+        timeSlotsContainer.innerHTML = ''; // Limpiar el contenedor si no hay fecha seleccionada
         return;
     }
 
-    const price = calculatePrice(selectedDate, timeSlot);
-    document.getElementById('price').value = price ? `${price} euros` : "";
+    const timeSlots = ['mañana', 'tarde', 'todo'];
+    let html = '<label for="timeSlot">Selecciona la franja horaria:</label>';
+
+    timeSlots.forEach(slot => {
+        const isUnavailable = unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(slot);
+        html += `
+            <div class="form-check time-slot ${isUnavailable ? 'disabled' : ''}">
+                <input class="form-check-input" type="radio" name="timeSlot" id="${slot}" value="${slot}" ${isUnavailable ? 'disabled' : ''}>
+                <label class="form-check-label" for="${slot}">
+                    ${slot.charAt(0).toUpperCase() + slot.slice(1)}
+                </label>
+            </div>
+        `;
+    });
+
+    timeSlotsContainer.innerHTML = html;
 }
 
-// Script para actualizar el precio automáticamente según la fecha seleccionada
-document.getElementById('date').addEventListener('change', onDateChange);
-
-// Actualiza el precio cuando cambia la franja horaria
-document.getElementById('timeSlot').addEventListener('change', function() {
+// Actualiza el contenedor de franjas horarias cuando cambia la fecha
+document.getElementById('date').addEventListener('change', function() {
+    updateTimeSlots();
     onDateChange();
 });
 
-// Inicializar EmailJS con el ID del usuario
+// Actualiza el precio cuando cambia la franja horaria
+document.getElementById('timeSlotsContainer').addEventListener('change', function() {
+    onDateChange();
+});
+
+// Inicializa EmailJS con el ID del usuario
 emailjs.init('YbHlCwf9oibKf6KTF'); // Reemplaza con tu public key
 
 // Manejo del envío del formulario
@@ -53,7 +86,7 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     event.preventDefault(); // Prevenir el envío del formulario
 
     const selectedDate = document.getElementById('date').value;
-    const timeSlot = document.getElementById('timeSlot').value;
+    const timeSlot = document.querySelector('input[name="timeSlot"]:checked')?.value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
     const price = document.getElementById('price').value;
