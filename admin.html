@@ -4,56 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Administrador de Reservas</title>
+    <title>Admin - La Tabla Nostra</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de que este archivo exista -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <header class="d-flex align-items-center justify-content-center py-5">
-        <h1>Administra las Reservas</h1>
+        <h1>Admin - La Tabla Nostra</h1>
     </header>
 
     <section class="container my-5">
         <h2>Lista de Reservas</h2>
-        <table class="table table-striped">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Fecha</th>
                     <th>Franja Horaria</th>
-                    <th>Correo Electrónico</th>
+                    <th>Email</th>
                     <th>Teléfono</th>
                     <th>Precio</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody id="reservationsTableBody">
-                <!-- Reservas se llenarán aquí -->
+            <tbody id="reservationsTable">
+                <!-- Las reservas se cargarán aquí desde el script.js -->
             </tbody>
         </table>
     </section>
 
-    <script>
-        // Cargar reservas del LocalStorage, si existen
-        const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+    <footer class="text-center py-4">
+        <p>&copy; 2024 La Tabla Nostra</p>
+    </footer>
 
-        // Función para mostrar reservas en la tabla
-        function displayReservations() {
-            const tableBody = document.getElementById('reservationsTableBody');
-            tableBody.innerHTML = ''; // Limpiar tabla antes de llenarla
-            reservations.forEach(reservation => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${reservation.date}</td>
-                    <td>${reservation.timeSlot}</td>
-                    <td>${reservation.email}</td>
-                    <td>${reservation.phone}</td>
-                    <td>${reservation.price}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Mostrar las reservas al cargar la página
-        document.addEventListener('DOMContentLoaded', displayReservations);
-    </script>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>
+
