@@ -1,154 +1,62 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>La Tabla Nostra</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de que este archivo exista -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Estilos para el enlace de login */
-        .login-link {
-            position: absolute;
-            top: 20px; /* Ajusta según lo necesites */
-            right: 20px; /* Ajusta según lo necesites */
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            color: #007bff; /* Color de enlace */
+// Cargar fechas no disponibles del LocalStorage, si existen
+const unavailableDates = JSON.parse(localStorage.getItem('unavailableDates')) || {};
+
+// Función para actualizar las franjas horarias disponibles
+function updateTimeSlots() {
+    const selectedDate = document.getElementById('date').value;
+    const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+
+    if (!selectedDate) {
+        timeSlotsContainer.innerHTML = ''; // Limpiar el contenedor si no hay fecha seleccionada
+        document.getElementById('price').value = ''; // Limpiar el precio
+        return;
+    }
+
+    const timeSlots = ['mañana', 'tarde', 'todo'];
+    let html = '<label>Selecciona la franja horaria:</label>';
+
+    timeSlots.forEach(slot => {
+        const isUnavailable = unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(slot);
+        html += `
+            <div class="form-check">
+                <input class="form-check-input ${isUnavailable ? 'disabled' : ''}" type="radio" name="timeSlot" id="${slot}" value="${slot}" ${isUnavailable ? 'disabled' : ''}>
+                <label class="form-check-label ${isUnavailable ? 'disabled' : ''}" for="${slot}">
+                    ${slot.charAt(0).toUpperCase() + slot.slice(1)}
+                </label>
+            </div>
+        `;
+    });
+
+    timeSlotsContainer.innerHTML = html;
+}
+
+// Función para manejar el cambio de fecha
+function onDateChange() {
+    const selectedDate = document.getElementById('date').value;
+    const timeSlot = document.querySelector('input[name="timeSlot"]:checked')?.value;
+
+    updateTimeSlots(); // Actualiza las franjas horarias disponibles
+
+    if (selectedDate && timeSlot) {
+        // Verificar si la franja horaria está disponible para la fecha seleccionada
+        if (unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(timeSlot)) {
+            alert("La franja horaria seleccionada no está disponible.");
+            document.getElementById('price').value = "";
+            return;
         }
 
-        .login-link:hover {
-            text-decoration: underline;
-        }
+        const price = calculatePrice(selectedDate, timeSlot);
+        document.getElementById('price').value = price ? `${price} euros` : "";
+    }
+}
 
-        .time-slot {
-            margin-bottom: 5px;
-        }
+// Actualiza el contenedor de franjas horarias cuando cambia la fecha
+document.getElementById('date').addEventListener('change', function() {
+    updateTimeSlots();
+    onDateChange();
+});
 
-        .time-slot.disabled {
-            text-decoration: line-through;
-            color: #6c757d; /* Color de texto desactivado */
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Enlace al login en la esquina superior derecha -->
-    <a href="login.html" class="login-link">Iniciar Sesión</a>
-
-    <!-- Cabecera con logo -->
-    <header class="d-flex align-items-center justify-content-center py-5">
-        <img src="images/Logoweb.jpg" alt="Logo La Tabla Nostra" class="logo">
-        <div class="text-center">
-            <h1 class="mb-0">La Tabla Nostra</h1>
-            <p class="eslogan mb-0">Un espacio para celebrar y disfrutar en familia</p>
-        </div>
-    </header>
-
-    <!-- Descripción del local e imágenes lado a lado -->
-    <section class="container my-5 d-flex align-items-start justify-content-between">
-        <div class="col-md-6">
-            <h2>La Tabla Nostra es el espacio perfecto para celebrar todo tipo de eventos familiares, fiestas y reuniones. Ofrecemos un ambiente acogedor, adaptable tanto para adultos como para niños.</h2>
-            <p>¡Disfruta de un día inolvidable con nosotros! Reserva ya!</p>
-        </div>
-        <div class="col-md-6 text-right">
-            <img src="images/ejemplo.jpeg" class="img-fluid mb-3" alt="Ejemplo Local 1">
-            <img src="images/ejemplo.jpeg" class="img-fluid mb-3" alt="Ejemplo Local 2">
-            <img src="images/ejemplo.jpeg" class="img-fluid" alt="Ejemplo Local 3">
-        </div>
-    </section>
-
-    <!-- Video -->
-    <section class="container text-center my-4">
-        <h2>Video del Local</h2>
-        <video width="400" controls>
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            Tu navegador no soporta el video.
-        </video>
-    </section>
-
-    <!-- Formulario de alquiler -->
-    <section class="container booking-form my-5">
-        <h2 class="text-center">Reserva tu Evento</h2>
-        <form id="rentalForm">
-            <div class="form-group">
-                <label for="date">Selecciona una fecha:</label>
-                <input type="date" class="form-control" id="date" required>
-            </div>
-           <div class="form-group" id="timeSlotsContainer">
-                <!-- Aquí se insertarán dinámicamente las franjas horarias -->
-            </div>
-            <div class="form-group">
-                <label for="price">Precio:</label>
-                <input type="text" class="form-control" id="price" readonly>
-            </div>
-            <div class="form-group">
-                <label for="email">Correo electrónico:</label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Teléfono:</label>
-                <input type="tel" class="form-control" id="phone" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Reservar</button>
-        </form>
-    </section>
-
-    <!-- Redes sociales -->
-    <footer class="text-center py-4">
-        <p>Síguenos en nuestras redes sociales</p>
-        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="images/instagram.jfif" alt="Instagram"></a>
-        <a href="#"><img src="images/ticktok.png" alt="Twitter"></a>
-        <p>&copy; 2024 La Tabla Nostra</p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        emailjs.init('YbHlCwf9oibKf6KTF');  // Reemplaza 'YOUR_PUBLIC_KEY' con tu clave pública real
-
-        // Cargar fechas no disponibles del LocalStorage, si existen
-        const unavailableDates = JSON.parse(localStorage.getItem('unavailableDates')) || {};
-
-        // Función para mostrar las franjas horarias debajo del calendario
-        function updateTimeSlots() {
-            const selectedDate = document.getElementById('date').value;
-            const timeSlotsContainer = document.getElementById('timeSlotsContainer');
-
-            if (!selectedDate) {
-                timeSlotsContainer.innerHTML = ''; // Limpiar el contenedor si no hay fecha seleccionada
-                return;
-            }
-
-            const timeSlots = ['mañana', 'tarde', 'todo'];
-            let html = '<label for="timeSlot">Selecciona la franja horaria:</label>';
-
-            timeSlots.forEach(slot => {
-                const isUnavailable = unavailableDates[selectedDate] && unavailableDates[selectedDate].includes(slot);
-                html += `
-                    <div class="form-check time-slot ${isUnavailable ? 'disabled' : ''}">
-                        <input class="form-check-input" type="radio" name="timeSlot" id="${slot}" value="${slot}" ${isUnavailable ? 'disabled' : ''}>
-                        <label class="form-check-label" for="${slot}">
-                            ${slot.charAt(0).toUpperCase() + slot.slice(1)}
-                        </label>
-                    </div>
-                `;
-            });
-
-            timeSlotsContainer.innerHTML = html;
-        }
-
-        // Actualiza el contenedor de franjas horarias cuando cambia la fecha
-        document.getElementById('date').addEventListener('change', updateTimeSlots);
-
-        // Inicializa las franjas horarias cuando se carga la página por primera vez
-        document.addEventListener('DOMContentLoaded', updateTimeSlots);
-    </script>
-</body>
-</html>
+// Actualiza el precio cuando cambia la franja horaria
+document.getElementById('timeSlotsContainer').addEventListener('change', function() {
+    onDateChange();
+});
