@@ -49,7 +49,7 @@ document.getElementById('timeSlot').addEventListener('change', function() {
 
 // Inicializar EmailJS
 if (typeof emailjs !== 'undefined') {
-    emailjs.init('29kuLMmoK5AzTpj7r');
+    emailjs.init('29kuLMmoK5AzTpj7r');  // Asegúrate de que el ID del usuario es correcto
 } else {
     alert('Error: No se pudo inicializar el servicio de EmailJS.');
 }
@@ -57,7 +57,7 @@ if (typeof emailjs !== 'undefined') {
 // Validación básica del formulario y envío de datos
 document.getElementById('rentalForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío del formulario para demostración
-    
+
     const selectedDate = document.getElementById('date').value;
     const timeSlot = document.getElementById('timeSlot').value;
     const email = document.getElementById('email').value;
@@ -75,7 +75,7 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     unavailableDates.push(selectedDate);
     localStorage.setItem('unavailableDates', JSON.stringify(unavailableDates));
 
-    // Enviar correo electrónico con EmailJS
+    // Enviar correo electrónico a ti mismo con EmailJS
     if (typeof emailjs !== 'undefined') {
         emailjs.send('service_lqiluoz', 'template_v0l0n99', {
             date: selectedDate,
@@ -87,6 +87,7 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
         .then(function(response) {
             alert('Reserva confirmada. Se ha enviado un correo electrónico de confirmación.');
         }, function(error) {
+            console.error('Error:', error);  // Captura el error
             alert('Error al enviar el correo electrónico. Inténtalo de nuevo.');
         });
     } else {
