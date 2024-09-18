@@ -80,6 +80,12 @@ img {
     background-color: #21867a;
 }
 
+/* Estilo para franjas horarias tachadas */
+.disabled {
+    text-decoration: line-through;
+    color: #6c757d; /* Color gris para elementos deshabilitados */
+}
+
 /* Pie de página */
 footer {
     background-color: #2a9d8f; /* Verde oscuro */
