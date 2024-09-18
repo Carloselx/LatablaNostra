@@ -25,6 +25,8 @@ header img {
 header h1 {
     font-size: 2rem;
     font-weight: 600;
+    margin-top: 10px; /* Espacio encima del eslogan */
+    margin-bottom: 0; /* Elimina el margen inferior por defecto */
 }
 
 .eslogan {
