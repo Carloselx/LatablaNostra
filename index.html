@@ -7,6 +7,7 @@
     <title>La Tabla Nostra - Alquiler de Local</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -19,32 +20,26 @@
         </div>
     </header>
 
-    <!-- Descripción del local -->
-    <section class="container text-center my-5">
-        <h2>Descripción del Local</h2>
-        <p>La Tabla Nostra es el espacio perfecto para celebrar todo tipo de eventos familiares, fiestas y reuniones. Ofrecemos un ambiente acogedor, adaptable tanto para adultos como para niños. ¡Disfruta de un día inolvidable con nosotros!</p>
+    <!-- Descripción del local e imágenes lado a lado -->
+    <section class="container my-5 d-flex align-items-start justify-content-between">
+        <div class="col-md-6">
+            <h2>Descripción del Local</h2>
+            <p>La Tabla Nostra es el espacio perfecto para celebrar todo tipo de eventos familiares, fiestas y reuniones. Ofrecemos un ambiente acogedor, adaptable tanto para adultos como para niños. ¡Disfruta de un día inolvidable con nosotros!</p>
+        </div>
+        <div class="col-md-6 text-right">
+            <img src="https://via.placeholder.com/300" class="img-fluid mb-3" alt="Ejemplo Local 1">
+            <img src="https://via.placeholder.com/300" class="img-fluid mb-3" alt="Ejemplo Local 2">
+            <img src="https://via.placeholder.com/300" class="img-fluid" alt="Ejemplo Local 3">
+        </div>
     </section>
 
-    <!-- Galería de imágenes y videos -->
-    <section class="container gallery my-5">
-        <h2 class="text-center">Galería</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <img src="https://via.placeholder.com/300" class="img-fluid" alt="Ejemplo Local 1">
-            </div>
-            <div class="col-md-4">
-                <img src="https://via.placeholder.com/300" class="img-fluid" alt="Ejemplo Local 2">
-            </div>
-            <div class="col-md-4">
-                <img src="https://via.placeholder.com/300" class="img-fluid" alt="Ejemplo Local 3">
-            </div>
-        </div>
-        <div class="text-center my-4">
-            <video width="400" controls>
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                Tu navegador no soporta el video.
-            </video>
-        </div>
+    <!-- Video -->
+    <section class="container text-center my-4">
+        <h2>Video del Local</h2>
+        <video width="400" controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
     </section>
 
     <!-- Formulario de alquiler -->
