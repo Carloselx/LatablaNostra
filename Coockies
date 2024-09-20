@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Cookies</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Si tienes un CSS -->
+    <title>Política de Cookies - La Tabla Nostra</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de que este archivo exista -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Política de Cookies</h1>
+    <header class="d-flex align-items-center justify-content-center py-5">
+        <img src="images/Logoweb.jpg" alt="Logo La Tabla Nostra" class="logo">
+        <h1 class="text-center">Política de Cookies</h1>
     </header>
-    <main>
+
+    <main class="container my-5">
         <section>
             <h2>¿Qué son las cookies?</h2>
             <p>Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita un sitio web. Se utilizan para mejorar su experiencia en línea, recordando sus preferencias y visitas anteriores.</p>
@@ -33,8 +37,13 @@
             <p>Puede configurar su navegador para rechazar las cookies o para que le avise cuando se envían. Para más información, consulte la sección de ayuda de su navegador.</p>
         </section>
     </main>
-    <footer>
+
+    <footer class="text-center py-4">
         <p>&copy; 2024 La Tabla Nostra</p>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
