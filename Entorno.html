@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Entorno - La Tabla Nostra</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de que este archivo exista -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabecera con logo -->
+    <header class="d-flex align-items-center justify-content-center py-5 position-relative">
+        <!-- Enlace a la página principal alineado a la izquierda -->
+        <a href="index.html" class="btn btn-outline-secondary position-absolute" style="top: 20px; left: 20px;">Volver a la Página Principal</a>
+
+        <img src="images/Logoweb.jpg" alt="Logo La Tabla Nostra" class="logo">
+        <div class="text-center">
+            <h1 class="mb-0">Entorno</h1>
+            <p class="eslogan mb-0">Disfruta de lo que te rodea</p>
+        </div>
+    </header>
+
+    <!-- Sección de descripción del entorno -->
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Lo que te espera alrededor de La Tabla Nostra</h2>
+        <p class="text-center">Nuestro local está situado en un entorno privilegiado con acceso a varios restaurantes, cafeterías y parques infantiles, todo dentro de una zona peatonal segura para los niños. Perfecto para complementar tus eventos y disfrutar aún más del día.</p>
+    </section>
+
+    <!-- Sección de imágenes clicables con descripciones del entorno -->
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Lugares Destacados Cercanos</h2>
+        <div class="row">
+            <!-- Primera imagen: Restaurantes -->
+            <div class="col-md-4 mb-4">
+                <a href="#modal1" data-toggle="modal">
+                    <img src="images/restaurante.jpg" class="img-fluid" alt="Restaurante cercano">
+                </a>
+                <p class="text-center"><em>Restaurantes a pocos pasos del local</em></p>
+            </div>
+            <!-- Modal para la primera imagen -->
+            <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modalLabel1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel1">Restaurantes Cercanos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/restaurante.jpg" class="img-fluid" alt="Restaurante cercano">
+                            <p class="mt-2">Disfruta de una gran variedad de restaurantes a pocos pasos de nuestro local. Perfecto para continuar con la celebración después de tu evento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda imagen: Cafeterías -->
+            <div class="col-md-4 mb-4">
+                <a href="#modal2" data-toggle="modal">
+                    <img src="images/cafeteria.jpg" class="img-fluid" alt="Cafetería cercana">
+                </a>
+                <p class="text-center"><em>Cafeterías acogedoras para relajarse</em></p>
+            </div>
+            <!-- Modal para la segunda imagen -->
+            <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modalLabel2" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel2">Cafeterías Cercanas</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/cafeteria.jpg" class="img-fluid" alt="Cafetería cercana">
+                            <p class="mt-2">Relájate en una de las acogedoras cafeterías cercanas mientras los niños disfrutan de la zona de juegos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tercera imagen: Parques infantiles -->
+            <div class="col-md-4 mb-4">
+                <a href="#modal3" data-toggle="modal">
+                    <img src="images/parque_infantil.jpg" class="img-fluid" alt="Parque infantil cercano">
+                </a>
+                <p class="text-center"><em>Parques infantiles seguros</em></p>
+            </div>
+            <!-- Modal para la tercera imagen -->
+            <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="modalLabel3" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel3">Parques Infantiles</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/parque_infantil.jpg" class="img-fluid" alt="Parque infantil cercano">
+                            <p class="mt-2">Diversión garantizada en los parques infantiles cercanos, en una zona peatonal segura para los más pequeños.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redes sociales -->
+    <footer class="text-center py-4">
+        <p>Síguenos en nuestras redes sociales</p>
+        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="images/instagram.jfif" alt="Instagram"></a>
+        <a href="#"><img src="images/ticktok.png" alt="Tiktok"></a>
+        <p>&copy; 2024 La Tabla Nostra</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
