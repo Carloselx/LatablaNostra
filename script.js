@@ -94,7 +94,7 @@ document.getElementById('rentalForm').addEventListener('submit', function(event)
     })
     .then(function(response) {
         console.log('Éxito:', response);
-        alert('Reserva confirmada. Se ha enviado un correo electrónico de confirmación.');
+        alert('Muchas gracias por elegir La Tabla Nostra. Dejanos que revisemos todo, nos pondremos en contacto contigo para confirmar la reserva.');
     }, function(error) {
         console.error('Error:', error); // Imprime el error en la consola para detalles más específicos
         alert('Error al enviar el correo electrónico. Inténtalo de nuevo.');
