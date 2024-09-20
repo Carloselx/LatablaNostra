@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Cookies</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Si tienes un CSS -->
+</head>
+<body>
+    <header>
+        <h1>Política de Cookies</h1>
+    </header>
+    <main>
+        <section>
+            <h2>¿Qué son las cookies?</h2>
+            <p>Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita un sitio web. Se utilizan para mejorar su experiencia en línea, recordando sus preferencias y visitas anteriores.</p>
+        </section>
+        <section>
+            <h2>Tipos de cookies que utilizamos</h2>
+            <p>Nuestro sitio utiliza las siguientes cookies:</p>
+            <ul>
+                <li><strong>Cookies de sesión:</strong> Son temporales y se eliminan al cerrar el navegador.</li>
+                <li><strong>Cookies persistentes:</strong> Permanecen en su dispositivo por un tiempo específico o hasta que las elimine.</li>
+                <li><strong>Cookies de terceros:</strong> Son gestionadas por otros servicios que utilizamos, como analíticas y redes sociales.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Consentimiento</h2>
+            <p>Al continuar navegando por nuestro sitio, usted acepta el uso de cookies. Puede gestionar su consentimiento modificando la configuración de su navegador.</p>
+        </section>
+        <section>
+            <h2>Cómo gestionar las cookies</h2>
+            <p>Puede configurar su navegador para rechazar las cookies o para que le avise cuando se envían. Para más información, consulte la sección de ayuda de su navegador.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 La Tabla Nostra</p>
+    </footer>
+</body>
+</html>
