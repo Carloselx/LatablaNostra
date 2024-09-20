@@ -17,6 +17,7 @@ header {
     color: white;
     padding: 20px;
     text-align: center; /* Centra el texto */
+    position: relative; /* Para usar posición absoluta en otros elementos */
 }
 
 /* Estilos para el logo */
@@ -42,6 +43,12 @@ header h1 {
     margin-bottom: 0; /* Elimina el margen inferior por defecto */
 }
 
+/* Botón de Login en la esquina superior derecha */
+header .btn-outline-primary {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
 
 /* Descripción e imágenes */
 section.container {
@@ -71,6 +78,7 @@ img {
     color: #333;
 }
 
+/* Botón de reserva */
 .btn-primary {
     background-color: #2a9d8f; /* Verde elegante */
     border-color: #2a9d8f;
@@ -100,4 +108,20 @@ footer a {
 footer a img {
     width: 30px;
     border: none; /* Elimina cualquier borde alrededor de la imagen */
+}
+
+/* Mapa responsivo */
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+    position: relative;
+    height: 0;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
