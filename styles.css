@@ -125,3 +125,10 @@ footer a img {
     width: 100%;
     position: absolute;
 }
+
+.cookies {
+    background-color: white;
+    background-image: none; /* Asegúrate de que no haya imagen */
+}
+
+
