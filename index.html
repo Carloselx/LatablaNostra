@@ -9,31 +9,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de que este archivo exista -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Estilos para el widget de Instagram y su posición */
-        .instagram-widget {
-            max-width: 320px;
-            margin-right: 20px;
-        }
-
-        /* Alineación en pantallas grandes */
-        .main-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        /* Para pantallas pequeñas, se ajusta la posición del widget */
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-                align-items: center;
-            }
-            .instagram-widget {
-                margin: 20px 0;
-            }
-        }
-    </style>
 </head>
 <body>
   
@@ -56,15 +31,8 @@
     </div>
 </header>
 
-<!-- Descripción del local con widget de Instagram a la izquierda -->
-<section class="container my-5 main-content">
-    <!-- Widget de Instagram -->
-    <div class="instagram-widget">
-        <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-        <iframe src="https://lightwidget.com/widgets/INSTAGRAM_WIDGET_ID.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
-    </div>
-
-    <!-- Descripción del local sin imágenes -->
+<!-- Descripción del local sin imágenes -->
+<section class="container my-5 d-flex flex-column align-items-center">
     <div class="col-md-8 text-center">
         <h2><em>"La Tabla Nostra es el espacio perfecto para celebrar todo tipo de eventos familiares, fiestas y reuniones. Ofrecemos un ambiente acogedor, adaptable tanto para adultos como para niños."</em></h2>
         <p><em>¡Disfruta de un día inolvidable con nosotros! Reserva ya!</em></p>
