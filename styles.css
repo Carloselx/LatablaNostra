@@ -110,34 +110,6 @@ footer a img {
     border: none; /* Elimina cualquier borde alrededor de la imagen */
 }
 
-/* Widget de Instagram */
-.instagram-widget {
-    max-width: 320px;
-    margin-right: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
-    border: 3px solid #e76f51; /* Borde rojo suave */
-    border-radius: 10px; /* Bordes redondeados */
-    padding: 10px;
-}
-
-/* Alineación en pantallas grandes */
-.main-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-/* Para pantallas pequeñas, el widget se mueve debajo del texto */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column;
-        align-items: center;
-    }
-    .instagram-widget {
-        margin: 20px 0;
-    }
-}
-
 /* Mapa responsivo */
 .map-responsive {
     overflow: hidden;
@@ -158,5 +130,3 @@ footer a img {
     background-color: white;
     background-image: none; /* Asegúrate de que no haya imagen */
 }
-
-
